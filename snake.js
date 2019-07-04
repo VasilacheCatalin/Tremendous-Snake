@@ -1,21 +1,19 @@
-// const rows = 10;
-// const cols = 10;
-// let board = [ ];
-// const free = "#228B22";
-//
-// function createBoard(){
-//     document.querySelector('tb').innerHtml = document.createElement('tr');
-//     //document.getElementsByTagName("table").style.color = "red";
-//
-//     for (let i = 0; i < rows; i++){
-//         board[i] = [ ];
-//         document.querySelector('tr').innerHtml = document.createElement("tr");
-//
-//         for (let j = 0; j < cols; j++) {
-//             board[i][j] = free;
-//             document.getElementsByTagName("tr").innerHtml = document.createElement("td");
-//         }
-//     }
-// }
-// setInterval(createBoard, 1000);
-// //createBoard();
+function createBoard(rows, cols){
+
+
+    for(let i=0; i<rows; i++) {
+        const ro = document.createElement("div");
+        ro.id=`${i}`;
+        const b = document.getElementById("board");
+        b.appendChild(ro);
+        const r = document.getElementById(`${i}`);
+        r.style.display = "flex";
+
+        for(let j=0; j<cols; j++){
+            const sq = document.createElement("div");
+            sq.id="square";
+            r.appendChild(sq);
+        }
+    }
+}
+createBoard(15,15);
