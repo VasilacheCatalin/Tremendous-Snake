@@ -4,3 +4,6 @@
     background-color: forestgreen;
     border-style: solid;
 }
+.row {
+    display:flex;
+}
