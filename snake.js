@@ -34,37 +34,41 @@ function getRandomPosition (rows, cols){
      cell.style.backgroundColor = "red";
  }
 
- function keyListener(){
-    window.addEventListener("keypress", motionCell )
- }
-
-function motionCell(randomRow, randomColumn, direction) {
+function motionCell(randomRow, randomColumn) {
+    let interval;
     colorCell([randomRow, randomColumn]);
-    switch (direction){
-        case "left":
-            setInterval(() => colorCell([randomRow, randomColumn--]), 100);
-            break;
-        case "right":
-            setInterval(() => colorCell([randomRow, randomColumn++]), 100);
-            break;
-        case "up":
-            setInterval(() => colorCell([randomRow--, randomColumn]), 100);
-            break;
-        case "down":
-            setInterval(() => colorCell([randomRow++, randomColumn]), 100);
-            break;
-        default:
-            setInterval(() => colorCell([randomRow, randomColumn]), 100);
-
+    window.addEventListener("keydown", direction);
+    function direction(event) {
+        switch (event.keyCode) {
+            case 37:
+                clearInterval(interval);
+                interval = setInterval(() => colorCell([randomRow, randomColumn--]), 100);
+                break;
+            case 39:
+                clearInterval(interval);
+                interval = setInterval(() => colorCell([randomRow, randomColumn++]), 100);
+                break;
+            case 38:
+                clearInterval(interval);
+                interval = setInterval(() => colorCell([randomRow--, randomColumn]), 100);
+                break;
+            case 40:
+                clearInterval(interval);
+                interval = setInterval(() => colorCell([randomRow++, randomColumn]), 100);
+                break;
+            default:
+                clearInterval(interval);
+                interval = setInterval(() => colorCell([randomRow, randomColumn]), 100);
+        }
     }
 }
 
 function initGame(){
     let rows = 20;
     let cols = 20;
-     createBoard(rows,cols);
+    createBoard(rows,cols);
     let [randomRow, randomColumn] = getRandomPosition(rows,cols);
-    motionCell(randomRow, randomColumn, "right");
+    motionCell(randomRow, randomColumn);
 }
 
 initGame();
